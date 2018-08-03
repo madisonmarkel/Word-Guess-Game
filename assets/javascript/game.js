@@ -21,6 +21,13 @@ var guesses = [""];
        guesses[i] = "-";
     }
 
+    //reset the game if you lose or win
+    function reset() {
+        guessesLeft = 10;
+        wrongGuesses = [""];
+        // how to get new display word????
+    }
+
 // User Press
 document.onkeyup = function(event) {
 
@@ -46,18 +53,22 @@ document.onkeyup = function(event) {
     // Limits guesses -- WORKING
     if (guessesLeft === 0){
          alert("loser");
+         reset();
     }
 
     // winner winner - NOT WORKING (commas?)
     if (displayedWord == guesses) {
-        alert("winner winner chicken dinner")
+        alert("winner winner chicken dinner");
+        wins++;
+        reset();
     }
   
   //HTML Input
             var html = 
             "<p>Guess this word: " + guesses + "</p>" +
             "<p>Your guesses: " + wrongGuesses + "</p>" +
-            "<p>Guesses Left: " + guessesLeft + "</p>";
+            "<p>Guesses Left: " + guessesLeft + "</p>" +
+            "<p> Wins: " + wins + "</p>";
 
 
             document.querySelector("#game").innerHTML = html;
