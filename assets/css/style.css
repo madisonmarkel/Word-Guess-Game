@@ -1,0 +1,47 @@
+    body {
+        background: #eee;
+        margin: 0;
+    }
+    site_width {
+        max-width: 70rem;
+    }
+    h2 {
+        color:#074256;
+        text-align:center;
+    }
+/*HEADER*/
+    .site_header {
+        padding: 1em;
+        background:url("/Users/madisonmarkel/Desktop/Word-Guess-Game/assets/images/vangogh.png");
+        color:#fff;
+        text-shadow: 1px 3px 8px #000;
+        margin: 0 auto;
+        text-align: center;
+    }
+/*MAIN BODY*/
+    .col_half {
+        width: 49.83%;
+        float:left;
+        border: 1px groove #44aaaa;
+        margin: 0 auto;
+        padding:1em 0;
+        background:#e6e3ce;
+    }
+/*GAME*/
+    #game {
+        padding: 1em;
+    }
+
+/*MEDIA SCREENS*/
+    @media screen and (max-width:767px){
+        .col_half {
+            clear:both;
+            width:100%;
+        }
+    }
+    @media screen and (max-width:1180px){
+        .col_half {
+            clear:both;
+            width:100%;
+        }
+    }
