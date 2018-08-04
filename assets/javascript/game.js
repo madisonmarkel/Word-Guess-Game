@@ -1,42 +1,37 @@
-// how to alert user to pick a letter instead of a number
-// how to put a limit on guesses
-
-// Arrays
-
-
+// how to alert user to pick a letter instead of a number??
 
 // User Press
 document.addEventListener("DOMContentLoaded", function(event) {
 
-var wins = 0;
-var losses = 0;
+    var wins = 0;
+    var losses = 0;
 
-var guessesLeft;
-var wrongGuesses;
-var guesses = [];
-var wordOptions;
-var displayedWord;
+    var guessesLeft;
+    var wrongGuesses;
+    var guesses = [];
+    var wordOptions;
+    var displayedWord;
 
 
-//Functions
+    //Functions
     //reset the game if you lose or win
-function reset() {
-    guessesLeft = 10;
-    guesses = [];
-    wrongGuesses = [];
-    wordOptions = ["michelangelo", "monet", "clyfford still", "picasso"];
-    displayedWord = "";
-    displayedWord = wordOptions[Math.floor(Math.random() * wordOptions.length)];
+    function reset() {
+        guessesLeft = 10;
+        guesses = [];
+        wrongGuesses = [];
+        wordOptions = ["michelangelo", "monet", "clyfford still", "picasso"];
+        displayedWord = "";
+        displayedWord = wordOptions[Math.floor(Math.random() * wordOptions.length)];
 
-    //this function makes the artist name into dashes
-    for (var i = 0; i < displayedWord.length; i++) {
-        if (displayedWord[i] == " ") {
-            guesses[i] = " ";
-        } else {
-            guesses[i] = "-";
+        //this function makes the artist name into dashes
+        for (var i = 0; i < displayedWord.length; i++) {
+            if (displayedWord[i] == " ") {
+                guesses[i] = " ";
+            } else {
+                guesses[i] = "-";
+            }
         }
     }
-}
 
     reset();
     
@@ -55,46 +50,46 @@ function reset() {
         }
         
         //Loop to replace dashes with correct guess -- WORKING
-          for (var j = 0; j < displayedWord.length; j++) {
+        for (var j = 0; j < displayedWord.length; j++) {
       
-              if (displayedWord[j] === userGuess) {
-                guesses[j] = userGuess;
-                correctGuess = true;
-              }
-          }
+        if (displayedWord[j] === userGuess) {
+            guesses[j] = userGuess;
+            correctGuess = true;
+            }
+        }
       
-          //puts wrong/right guess in the list -- WORKING
-          if (!correctGuess && !alreadyGuessed){             
-              wrongGuesses.unshift(userGuess);
-              guessesLeft--;
-            }               
+        //puts wrong/right guess in the list -- WORKING
+        if (!correctGuess && !alreadyGuessed){             
+            wrongGuesses.unshift(userGuess);
+            guessesLeft--;
+        }               
       
-          // Limits guesses -- WORKING
-          if (guessesLeft === 0){
-               alert("loser");
-               reset();
-          }
+        // Limits guesses -- WORKING
+        if (guessesLeft === 0){
+            alert("loser");
+            reset();
+        }
       
-          // winner winner - NOT WORKING
-          if (guesses.every((character, i) => character === displayedWord[i])) {
-              wins++;
-              alert("winner winner chicken dinner");
-              reset();
-          }
+        // winner winner - NOT WORKING
+        if (guesses.every((character, i) => character === displayedWord[i])) {
+            wins++;
+            alert("winner winner chicken dinner");
+            reset();
+        }
         
         //HTML Input
-                  var html = 
-                  "<p>Guess this word: " + guesses.join("") + "</p>" +
-                  "<p>Your guesses: " + wrongGuesses.join(", ") + "</p>" +
-                  "<p>Guesses Left: " + guessesLeft + "</p>" +
-                  "<p> Wins: " + wins + "</p>";
+        var html = 
+            "<p>Guess this word: " + guesses.join("") + "</p>" +
+            "<p>Your guesses: " + wrongGuesses.join(", ") + "</p>" +
+            "<p>Guesses Left: " + guessesLeft + "</p>" +
+            "<p> Wins: " + wins + "</p>";
       
       
-                  document.querySelector("#game").innerHTML = html;
+        document.querySelector("#game").innerHTML = html;
               
-      };
+    };
 
-      return true;
+    return true;
 });
 
 
