@@ -1,79 +1,101 @@
-// How to take out commas? Once commas are removed the "winner" alert should work
 // how to alert user to pick a letter instead of a number
 // how to put a limit on guesses
 
 // Arrays
 
-    // Words
-    var wordOptions = ["michelangelo", "monet", "clyfford_still", "picasso"];
-    var displayedWord = wordOptions[Math.floor(Math.random() * wordOptions.length)];
+
+
+// User Press
+document.addEventListener("DOMContentLoaded", function(event) {
 
 var wins = 0;
 var losses = 0;
-var guessesLeft = 10;
-var wrongGuesses = [""];
-var guesses = [""];
+
+var guessesLeft;
+var wrongGuesses;
+var guesses = [];
+var wordOptions;
+var displayedWord;
 
 
 //Functions
-    //this function makes the artist name into dashes
-   for (var i = 0; i < displayedWord.length; i++) {
-       guesses[i] = "-";
-    }
-
     //reset the game if you lose or win
-    function reset() {
-        guessesLeft = 10;
-        wrongGuesses = [""];
-        // how to get new display word????
-    }
+function reset() {
+    guessesLeft = 10;
+    guesses = [];
+    wrongGuesses = [];
+    wordOptions = ["michelangelo", "monet", "clyfford still", "picasso"];
+    displayedWord = "";
+    displayedWord = wordOptions[Math.floor(Math.random() * wordOptions.length)];
 
-// User Press
-document.onkeyup = function(event) {
-
-  //determines what key is pressed
-    var userGuess = event.key;
-
-  
-  //Loop to replace dashes with correct guess -- WORKING
-    for (var j = 0; j < displayedWord.length; j++) {
-
-        if (displayedWord[j] === userGuess) {
-        guesses[j] = userGuess;
+    //this function makes the artist name into dashes
+    for (var i = 0; i < displayedWord.length; i++) {
+        if (displayedWord[i] == " ") {
+            guesses[i] = " ";
+        } else {
+            guesses[i] = "-";
         }
     }
+}
 
-    //puts wrong/right guess in the list -- WORKING
-    if (userGuess !== displayedWord[i]) {             
-        wrongGuesses.unshift(" " + userGuess);
-        guessesLeft--
+    reset();
+    
+    document.onkeyup = function(event) {
+
+        //determines what key is pressed
+          var userGuess = event.key;
+          var correctGuess = false;
+          var alreadyGuessed = false;
+
+        
+        // if statement limiting multiple wrong guesses (same letter)
+        if (wrongGuesses.indexOf(userGuess) >= 0) {
+            alert("You already guessed that dummy");
+            alreadyGuessed = true;
         }
         
-
-    // Limits guesses -- WORKING
-    if (guessesLeft === 0){
-         alert("loser");
-         reset();
-    }
-
-    // winner winner - NOT WORKING (commas?)
-    if (displayedWord == guesses) {
-        alert("winner winner chicken dinner");
-        wins++;
-        reset();
-    }
-  
-  //HTML Input
-            var html = 
-            "<p>Guess this word: " + guesses + "</p>" +
-            "<p>Your guesses: " + wrongGuesses + "</p>" +
-            "<p>Guesses Left: " + guessesLeft + "</p>" +
-            "<p> Wins: " + wins + "</p>";
-
-
-            document.querySelector("#game").innerHTML = html;
+        //Loop to replace dashes with correct guess -- WORKING
+          for (var j = 0; j < displayedWord.length; j++) {
+      
+              if (displayedWord[j] === userGuess) {
+                guesses[j] = userGuess;
+                correctGuess = true;
+              }
+          }
+      
+          //puts wrong/right guess in the list -- WORKING
+          if (!correctGuess && !alreadyGuessed){             
+              wrongGuesses.unshift(userGuess);
+              guessesLeft--;
+            }               
+      
+          // Limits guesses -- WORKING
+          if (guessesLeft === 0){
+               alert("loser");
+               reset();
+          }
+      
+          // winner winner - NOT WORKING
+          if (guesses.every((character, i) => character === displayedWord[i])) {
+              wins++;
+              alert("winner winner chicken dinner");
+              reset();
+          }
         
-};
+        //HTML Input
+                  var html = 
+                  "<p>Guess this word: " + guesses.join("") + "</p>" +
+                  "<p>Your guesses: " + wrongGuesses.join(", ") + "</p>" +
+                  "<p>Guesses Left: " + guessesLeft + "</p>" +
+                  "<p> Wins: " + wins + "</p>";
+      
+      
+                  document.querySelector("#game").innerHTML = html;
+              
+      };
+
+      return true;
+});
 
 
 
@@ -96,6 +118,8 @@ document.onkeyup = function(event) {
 
 
 
+
+/*
 
 function newFunction() {
     if (wrongGuesses = 15) {
