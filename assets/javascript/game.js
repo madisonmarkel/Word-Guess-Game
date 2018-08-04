@@ -50,11 +50,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
         
         //Loop to replace dashes with correct guess -- WORKING
-        for (var j = 0; j < displayedWord.length; j++) {
-      
-        if (displayedWord[j] === userGuess) {
-            guesses[j] = userGuess;
-            correctGuess = true;
+        for (var i = 0; i < displayedWord.length; i++) {
+            if (displayedWord[i] === userGuess) {
+                guesses[i] = userGuess;
+                correctGuess = true;
             }
         }
       
@@ -88,8 +87,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
         document.querySelector("#game").innerHTML = html;
               
     };
-
-    return true;
 });
 
 
