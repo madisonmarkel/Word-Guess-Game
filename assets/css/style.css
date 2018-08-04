@@ -12,7 +12,7 @@
 /*HEADER*/
     .site_header {
         padding: 5em;
-        background:url("/Users/madisonmarkel/Desktop/Word-Guess-Game/assets/images/vangogh.png");
+        background:url("../images/vangogh.png");
         color:#fff;
         text-shadow: 1px 3px 8px #000;
         margin: 0 auto;
